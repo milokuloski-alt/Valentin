@@ -31,7 +31,7 @@
   @keyframes twinkle {
     0% { opacity: 0.2; transform: translateY(0) translateX(0) rotate(0deg);}
     50% { opacity: 1; }
-    100% { opacity: 0.2; transform: translateY(1000px) translateX(200px) rotate(360deg);}
+    100% { opacity: translateY(1000px) translateX(200px) rotate(360deg);}
   }
 
   .card {
@@ -100,6 +100,7 @@
     0% { transform: translateY(-10px) rotate(0deg); }
     100% { transform: translateY(110vh) rotate(360deg); }
   }
+
 </style>
 </head>
 <body>
@@ -118,7 +119,6 @@
   <div class="hint" id="hint"></div>
 </div>
 
-<!-- Música romántica -->
 <audio id="musica" src="musica.mp3" autoplay loop></audio>
 
 <script>
@@ -177,11 +177,8 @@
     }
   });
 
-  // Reproducir música automáticamente
   const musica = document.getElementById('musica');
-  window.addEventListener('click', ()=>{ // algunos navegadores requieren interacción
-    musica.play();
-  });
+  window.addEventListener('click', ()=>{ musica.play(); }); // para móviles
 </script>
 
 </body>

@@ -1,8 +1,11 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>¿Quieres ser mi Valentín?</title>  <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Quieres ser mi Valentín?</title>
+  <style>
+    /* Fondo galaxia morado-anaranjado */
     body {
       margin: 0;
       padding: 0;
@@ -11,26 +14,17 @@
       justify-content: center;
       align-items: center;
       font-family: 'Segoe UI', sans-serif;
-      background: radial-gradient(circle at top, #ff9f1c, #5f0f99 60%, #2b004f);
-      overflow: hidden;
       color: white;
+      background: radial-gradient(circle at 30% 30%, #ff9f1c, #5f0f99 60%, #2b004f);
+      overflow: hidden;
     }
 
     .stars {
       position: fixed;
       width: 100%;
       height: 100%;
-      background-image: radial-gradient(2px 2px at 20px 30px, #fff, transparent),
-                        radial-gradient(2px 2px at 200px 150px, #fff, transparent),
-                        radial-gradient(1px 1px at 300px 80px, #fff, transparent),
-                        radial-gradient(2px 2px at 500px 200px, #fff, transparent);
-      animation: moveStars 40s linear infinite;
-      opacity: 0.4;
-    }
-
-    @keyframes moveStars {
-      from { transform: translateY(0); }
-      to { transform: translateY(1000px); }
+      background: transparent;
+      z-index: 0;
     }
 
     .card {
@@ -43,6 +37,7 @@
       max-width: 420px;
       width: 92%;
       position: relative;
+      z-index: 1;
       animation: fadeIn 1.2s ease;
     }
 
@@ -51,8 +46,14 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    img {
+      width: 140px;
+      margin-bottom: 15px;
+      border-radius: 15px;
+    }
+
     h1 {
-      font-size: 22px;
+      font-size: 20px;
       line-height: 1.4;
       margin-bottom: 20px;
     }
@@ -70,17 +71,13 @@
     #yes {
       background: linear-gradient(135deg, #ff9f1c, #ff6f00);
       color: #2b004f;
-      box-shadow: 0 6px 20px rgba(255,159,28,0.6);
     }
 
-    #yes:hover {
-      transform: scale(1.1);
-    }
+    #yes:hover { transform: scale(1.1); }
 
     #no {
       background: linear-gradient(135deg, #7b2cbf, #5a189a);
       color: white;
-      box-shadow: 0 6px 20px rgba(123,44,191,0.6);
     }
 
     .hint {
@@ -94,7 +91,6 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: red;
       pointer-events: none;
       animation: fall 3s linear infinite;
     }
@@ -103,18 +99,30 @@
       0% { transform: translateY(-10px) rotate(0deg); }
       100% { transform: translateY(110vh) rotate(360deg); }
     }
-  </style></head><body>
-  <div class="stars"></div>  <div class="card" id="card">
+
+  </style>
+</head>
+<body>
+
+  <div class="stars"></div>
+
+  <div class="card" id="card">
+    <!-- Imagen central -->
+    <img src="imagen.png" alt="amor">
+    
     <h1 id="question">
       Hello my Hottie, mi amor, mi cielo, mi niña, mi princesa, mi vida, mi soulmate, mi corazón 💜🧡<br><br>
       ¿Quieres ser mi Valentín?<br>
       ¿Y puedo ser tu Valentín?
-    </h1><button id="yes">Sí 💖</button>
-<button id="no">No 🙈</button>
+    </h1>
 
-<div class="hint" id="hint"></div>
+    <button id="yes">Sí 💖</button>
+    <button id="no">No 🙈</button>
 
-  </div>  <script>
+    <div class="hint" id="hint"></div>
+  </div>
+
+  <script>
     const yesBtn = document.getElementById('yes');
     const noBtn = document.getElementById('no');
     const hint = document.getElementById('hint');
@@ -146,7 +154,7 @@
         </p>
       `;
 
-      // Confetti
+      // Confeti
       for (let i = 0; i < 50; i++) {
         const confetti = document.createElement('div');
         confetti.classList.add('confetti');
@@ -157,5 +165,6 @@
         setTimeout(() => confetti.remove(), 3000);
       }
     });
-  </script></body>
+  </script>
+</body>
 </html>

@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>¿Quieres ser mi Valentín?</title>
-
-  <style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¿Quieres ser mi Valentín?</title>  <style>
     body {
       margin: 0;
       padding: 0;
@@ -13,113 +10,152 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #ff758c, #ff7eb3);
       font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top, #ff9f1c, #5f0f99 60%, #2b004f);
       overflow: hidden;
-    }
-
-    .card {
-      background: white;
-      padding: 40px 30px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-      max-width: 360px;
-      width: 90%;
-      position: relative;
-    }
-
-    h1 {
-      color: #e63946;
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: #444;
-      font-size: 17px;
-      margin-bottom: 25px;
-    }
-
-    .heart {
-      font-size: 55px;
-      animation: pulse 1.5s infinite;
-      margin-bottom: 10px;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
-    }
-
-    button {
-      padding: 12px 26px;
-      font-size: 16px;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      margin: 10px;
-      transition: transform 0.2s;
-    }
-
-    #yes {
-      background: #e63946;
       color: white;
     }
 
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+                        radial-gradient(2px 2px at 200px 150px, #fff, transparent),
+                        radial-gradient(1px 1px at 300px 80px, #fff, transparent),
+                        radial-gradient(2px 2px at 500px 200px, #fff, transparent);
+      animation: moveStars 40s linear infinite;
+      opacity: 0.4;
+    }
+
+    @keyframes moveStars {
+      from { transform: translateY(0); }
+      to { transform: translateY(1000px); }
+    }
+
+    .card {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      padding: 35px 30px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+      max-width: 420px;
+      width: 92%;
+      position: relative;
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 22px;
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 13px 28px;
+      font-size: 16px;
+      border: none;
+      border-radius: 35px;
+      cursor: pointer;
+      margin: 10px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    #yes {
+      background: linear-gradient(135deg, #ff9f1c, #ff6f00);
+      color: #2b004f;
+      box-shadow: 0 6px 20px rgba(255,159,28,0.6);
+    }
+
     #yes:hover {
-      transform: scale(1.08);
+      transform: scale(1.1);
     }
 
     #no {
-      background: #ccc;
-      color: #333;
-      position: absolute;
+      background: linear-gradient(135deg, #7b2cbf, #5a189a);
+      color: white;
+      box-shadow: 0 6px 20px rgba(123,44,191,0.6);
     }
-  </style>
-</head>
 
-<body>
+    .hint {
+      margin-top: 15px;
+      font-size: 15px;
+      opacity: 0.9;
+    }
 
-  <div class="card">
-    <div class="heart">❤️</div>
-    <h1>Gissel 💕</h1>
-    <p>
-      Bombón…<br>
-      ¿Quieres ser mi Valentín?
-    </p>
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: red;
+      pointer-events: none;
+      animation: fall 3s linear infinite;
+    }
 
-    <button id="yes">¡Sí! 💖</button>
-    <button id="no">No 😅</button>
-  </div>
+    @keyframes fall {
+      0% { transform: translateY(-10px) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(360deg); }
+    }
+  </style></head><body>
+  <div class="stars"></div>  <div class="card" id="card">
+    <h1 id="question">
+      Hello my Hottie, mi amor, mi cielo, mi niña, mi princesa, mi vida, mi soulmate, mi corazón 💜🧡<br><br>
+      ¿Quieres ser mi Valentín?<br>
+      ¿Y puedo ser tu Valentín?
+    </h1><button id="yes">Sí 💖</button>
+<button id="no">No 🙈</button>
 
-  <script>
-    const noBtn = document.getElementById("no");
-    const yesBtn = document.getElementById("yes");
+<div class="hint" id="hint"></div>
 
-    noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-      noBtn.style.left = x + "px";
-      noBtn.style.top = y + "px";
+  </div>  <script>
+    const yesBtn = document.getElementById('yes');
+    const noBtn = document.getElementById('no');
+    const hint = document.getElementById('hint');
+    const card = document.getElementById('card');
+
+    const mensajes = [
+      'Amor, ambos sabemos que sí quieres 💕',
+      'Toca en sí y verás algo mágico 😉✨',
+      'Te fijas cómo eres 😌',
+      'Anda, di que sí 🥺',
+      'Ta bien pues 😏',
+      'Toca sí y te ganas un chocolato (o sea yo haha) 🍫😂'
+    ];
+
+    let contador = 0;
+
+    noBtn.addEventListener('click', () => {
+      hint.textContent = mensajes[contador % mensajes.length];
+      contador++;
+      card.style.transform = 'scale(1.03)';
+      setTimeout(() => card.style.transform = 'scale(1)', 200);
     });
 
-    yesBtn.addEventListener("click", () => {
-      document.body.innerHTML = `
-        <div style="
-          text-align:center;
-          color:white;
-          padding:40px;
-        ">
-          <h1>💖 ¡Sabía que dirías que sí! 💖</h1>
-          <p style="font-size:20px;">
-            Gracias por hacer mi vida más bonita.<br>
-            Te amo, Bombón ❤️
-          </p>
-        </div>
+    yesBtn.addEventListener('click', () => {
+      card.innerHTML = `
+        <h1>💜🧡 Mis chapitas sabían que dirías que sí 🧡💜</h1>
+        <p style="font-size:18px; margin-top:15px;">
+          y mi corazón se alegra que así lo hayas escogido 💖✨
+        </p>
       `;
-    });
-  </script>
 
-</body>
+      // Confetti
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 3000);
+      }
+    });
+  </script></body>
 </html>
